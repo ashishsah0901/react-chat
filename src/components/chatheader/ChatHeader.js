@@ -7,13 +7,13 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 
-const ChatHeader = () => {
+const ChatHeader = (props) => {
     return (
         <div className='chatheader'>
             <div className="chatheader_left">
                 <h3>
                     <span className='chatheader_hash'>#</span>
-                    Ashish
+                    {props.channelName ? props.channelName : 'Channel Name'}
                 </h3>
             </div>
             <div className="chatheader_right">

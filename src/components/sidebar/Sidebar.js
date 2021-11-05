@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './sidebar.css'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
@@ -14,9 +14,34 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import { signOut } from '@firebase/auth';
 import { auth } from '../../firebase/firebase';
+import db from '../../firebase/firebase';
+import { addDoc, collection, onSnapshot } from '@firebase/firestore';
 
 const Sidebar = () => {
     const user = useSelector(selectUser);
+
+    const [channels, setChannels] = useState([]);
+
+    useEffect(() => {
+        const q = collection(db, 'channels');
+        onSnapshot(q, (snapshot) => {
+            setChannels(snapshot.docs.map(doc => ({
+                id: doc.id,
+                channel: doc.data().channelName,
+            })))
+        })
+    }, []);
+
+    const handleAddChannel = () => {
+        const channelName = prompt('Enter a new channel name...');
+        if (channelName) {
+            const q = collection(db, 'channels');
+            addDoc(q, {
+                channelName: channelName
+            })
+        }
+    }
+
     return (
         <div className='sidebar'>
             <div className="sidebar_top">
@@ -29,10 +54,12 @@ const Sidebar = () => {
                         <ExpandMoreIcon />
                         <h4>Text Channels</h4>
                     </div>
-                    <AddIcon className='sidebar_addChannel' />
+                    <AddIcon onClick={handleAddChannel} className='sidebar_addChannel' />
                 </div>
                 <div className="sidebar_channelsList">
-                    <SidebarChannel />
+                    {channels.map(channel => (
+                        <SidebarChannel key={channel.id} channelName={channel.channel} id={channel.id} />
+                    ))}
                 </div>
             </div>
             <div className="sidebar_voice">

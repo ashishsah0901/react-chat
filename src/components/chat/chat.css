@@ -4,16 +4,21 @@
     flex: 0.75;
     background-color: #363a3f;
     height: 100vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.chat::-webkit-scrollbar {
-    display:none;
+    overflow: hidden;
 }
 
 .chat_messages {
     flex: 1;
+    overflow: scroll;
+}
+
+.chat_messages::-webkit-scrollbar {
+    display: none;
+}
+
+.chat_messages {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .chat_input {
@@ -51,4 +56,14 @@
 
 .chat_inputIcons > .MuiSvgIcon-root {
     padding: 5px;
+}
+
+.chat_messageSend {
+    cursor: pointer;
+}
+
+.chat_noMessage {
+    display: flex;
+    justify-content: center;
+    color: white;
 }
