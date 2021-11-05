@@ -42,7 +42,7 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="sidebar_profile">
-                <Avatar />
+                <Avatar src='https://imgs.capitalfm.com/images/249014?crop=16_9&width=500&relax=1&signature=ullEsSclZNCBKkmxf_oP9M19vSQ=' />
                 <div className="sidebar_profileInfo">
                     <h3>Ashish Sah</h3>
                     <p>#thisIsMyID</p>
