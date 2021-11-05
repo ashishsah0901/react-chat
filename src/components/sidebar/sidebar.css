@@ -18,6 +18,13 @@
 
 .sidebar_channels {
     flex: 1;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidebar_channels::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar_addChannel {
@@ -80,4 +87,10 @@
 
 .sidebar_profile > .MuiAvatar-root {
     cursor: pointer;
+}
+
+@media(max-width: 768px) {
+    .sidebar {
+        flex: 0;
+    }
 }

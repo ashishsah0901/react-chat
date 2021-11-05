@@ -29,11 +29,13 @@ const Chat = () => {
 
     const sendMessage = (e) => {
         e.preventDefault()
-        addDoc(collection(db, 'channels', channelId, 'messages'), {
-            message: input,
-            user: user,
-            timestamp: serverTimestamp()
-        })
+        if (input.trim() !== "") {
+            addDoc(collection(db, 'channels', channelId, 'messages'), {
+                message: input,
+                user: user,
+                timestamp: serverTimestamp()
+            })
+        }
         setInput('');
     }
 
@@ -48,7 +50,7 @@ const Chat = () => {
             <div className="chat_input">
                 <AddCircleIcon fontSize='large' />
                 <form>
-                    <input disabled={!channelId} value={input} onChange={e => setInput(e.target.value)} placeholder={`Send message in ${channelName}`} />
+                    <input disabled={!channelId} value={input} onChange={e => setInput(e.target.value)} placeholder={channelName ? `Send message in ${channelName}` : 'Select a channel'} />
                     <button disabled={!channelId} className='chat_inputButton' type='submit' onClick={sendMessage}></button>
                 </form>
                 <div className="chat_inputIcons">

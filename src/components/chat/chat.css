@@ -67,3 +67,9 @@
     justify-content: center;
     color: white;
 }
+
+@media(max-width: 768px) {
+    .chat {
+        flex: 1;
+    }
+}
