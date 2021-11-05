@@ -77,3 +77,7 @@
 .sidebar_profileInfo > h3 {
     color: white;
 }
+
+.sidebar_profile > .MuiAvatar-root {
+    cursor: pointer;
+}
