@@ -11,6 +11,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    padding-right: 10px;
     background-color: #2f3135;
     color: white;
     border-bottom: 3px solid #26282c;
@@ -55,7 +56,7 @@
     align-items: center;
     color: gray;
     background-color: #2f3135;
-    padding: 10px;
+    padding: 5px;
     border-top: 1px solid gray;
 }
 
@@ -89,8 +90,41 @@
     cursor: pointer;
 }
 
+.sidebar_profile > .MuiSvgIcon-root {
+    transform: initial;
+}
+
+
 @media(max-width: 768px) {
-    .sidebar {
+
+    .sidebar_openSideMenu {
+        transform: translate3d(0);
         flex: 0;
+        display: none;
+        transition: transform 0.3s ease-out;
+    }
+    
+    .sidebar_closeSideMenu {
+        height: 100%;
+        box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 70%;
+        z-index: 200;
+        transform: translate3d(-100%);
+        transition: transform 0.3s ease-out;
+    }
+
+    .sidebar_voice, .sidebar_profile {
+        padding: 0;
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: 12px;
+    }
+
+    .sidebar_voiceIcon > .MuiSvgIcon-root, .sidebar_voice > .MuiSvgIcon-root, .sidebar_profileIcons > .MuiSvgIcon-root, .sidebar_profile > .MuiSvgIcon-root {
+        padding: 1px;
+        transform: scale(0.7);
     }
 }

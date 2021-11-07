@@ -40,7 +40,7 @@ const Chat = () => {
     }
 
     return (
-        <div className='chat'>
+        <div className={`chat chat_flex`}>
             <ChatHeader channelName={channelName} />
             <div className="chat_messages">
                 {messages.length > 0 ? messages.map((message) => (

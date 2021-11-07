@@ -1,10 +1,13 @@
 .chat {
     display: flex;
     flex-direction: column;
-    flex: 0.75;
     background-color: #363a3f;
     height: 100vh;
     overflow: hidden;
+}
+
+.chat_flex {
+    flex: 0.75;
 }
 
 .chat_messages {
@@ -69,7 +72,25 @@
 }
 
 @media(max-width: 768px) {
-    .chat {
+    .chat_flex {
         flex: 1;
+        width: 100vw;
     }
+
+    .chat_input {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .chat_inputIcons > .MuiSvgIcon-root {
+        padding: 2px;
+    }
+
+    .chat_input > form > input{
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        padding-left: 1px;
+    }
+
 }

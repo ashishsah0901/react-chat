@@ -6,11 +6,24 @@ import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsSideMenuOpen, setSideMenuState } from '../../features/appSlice';
 
 const ChatHeader = (props) => {
+    const dispatch = useDispatch()
+    const sideMenuOpen = useSelector(selectIsSideMenuOpen)
+
+    const toggleSideMenu = () => {
+        dispatch(setSideMenuState({
+            sideMenuOpen: !sideMenuOpen,
+        }))
+    }
+
     return (
         <div className='chatheader'>
             <div className="chatheader_left">
+                <MenuIcon onClick={toggleSideMenu} />
                 <h3>
                     <span className='chatheader_hash'>#</span>
                     {props.channelName ? props.channelName : 'Channel Name'}

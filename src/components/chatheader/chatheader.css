@@ -12,6 +12,15 @@
     padding: 10px;
 }
 
+.chatheader_left {
+    display: flex;
+    align-items: center;
+}
+
+.chatheader_left > .MuiSvgIcon-root {
+    display: none;
+}
+
 .chatheader_left > h3 {
     display: flex;
     align-items: center;
@@ -35,12 +44,13 @@
 }
 
 .chatheader_search {
-    display: flex;
-    align-items: center;
     color: gray;
     background-color: #2f3135;
     border-radius: 3px;
     padding: 3px;
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: space-between;
 }
 
 .chatheader_search > input {
@@ -48,4 +58,31 @@
     outline-width: 0;
     color: white;
     border: none;
+}
+
+@media(max-width: 575px) {
+    .chatheader_left > .MuiSvgIcon-root {
+        display: initial;
+    }
+
+    .chatheader {
+        flex-direction: column;
+    }
+
+    .chatheader_left {
+        width: 100%;
+    }
+
+    .chatheader_right {
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .chatheader_search > input {
+        width: 30vw;
+    }
+
+    .chatheader_right > .MuiSvgIcon-root {
+        padding: 2px;
+    }
 }

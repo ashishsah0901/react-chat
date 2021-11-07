@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './sidebar.css'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import AddIcon from '@mui/icons-material/Add';
 import SidebarChannel from '../sidebarchannel/SidebarChannel';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
@@ -16,9 +16,19 @@ import { signOut } from '@firebase/auth';
 import { auth } from '../../firebase/firebase';
 import db from '../../firebase/firebase';
 import { addDoc, collection, onSnapshot } from '@firebase/firestore';
+import { selectIsSideMenuOpen, setSideMenuState } from '../../features/appSlice';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
     const user = useSelector(selectUser);
+    const sideMenuOpen = useSelector(selectIsSideMenuOpen)
+    const dispatch = useDispatch()
+
+    const toggleSideMenu = () => {
+        dispatch(setSideMenuState({
+            sideMenuOpen: !sideMenuOpen,
+        }))
+    }
 
     const [channels, setChannels] = useState([]);
 
@@ -43,15 +53,14 @@ const Sidebar = () => {
     }
 
     return (
-        <div className='sidebar'>
+        <div className={`sidebar ${!sideMenuOpen ? 'sidebar_openSideMenu' : 'sidebar_closeSideMenu'}`}>
             <div className="sidebar_top">
                 <h3>Ashish sah</h3>
-                <ExpandMoreIcon />
+                <KeyboardArrowLeftIcon onClick={toggleSideMenu} />
             </div>
             <div className="sidebar_channels">
                 <div className="sidebar_channelHeaders">
                     <div className="sidebar_header">
-                        <ExpandMoreIcon />
                         <h4>Text Channels</h4>
                     </div>
                     <AddIcon onClick={handleAddChannel} className='sidebar_addChannel' />
